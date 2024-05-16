@@ -1,24 +1,20 @@
 import random
 
-# Data structures to store user data and top scores
 users = {}
 top_scores = []
 
-# Function to display the main menu
 def main_menu():
     print("\nWelcome to Dice Roll Game!")
     print("1. register")
     print("2. login")
     print("3. exit")
 
-# Function to display the game menu for a logged-in user
 def game_menu(username):
     print(f"\nWelcome {username}!")
     print("1. Start a new game")
     print("2. View top-10 scores")
     print("3. Logout")
 
-# Function for user registration
 def register():
     while True:
         username = input("Enter a new username (at least 4 characters, leave blank to cancel): ")
@@ -44,7 +40,6 @@ def register():
     users[username] = password
     print("Registration successful!")
 
-# Function for user login
 def login():
     while True:
         username = input("Enter your username (leave blank to cancel): ")
@@ -65,7 +60,6 @@ def login():
         else:
             print("Incorrect password. Please try again.")
 
-# Function to handle dice rolling game
 def dice_game(username):
     points = 0
     stages_won = 0

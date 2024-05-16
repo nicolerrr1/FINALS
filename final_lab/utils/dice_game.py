@@ -27,7 +27,7 @@ class DiceGame:
                 if bot_point == player_point:
                     print("It's a tie!")
                 elif bot_point > player_point:
-                    print("You lost, Username!")
+                    print("You lost, !")
                     bot_score += 1
                 elif bot_point < player_point:
                     print("You won, Username!")

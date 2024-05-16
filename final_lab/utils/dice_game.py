@@ -1,55 +1,55 @@
 import random
 
 class DiceGame:
-	def load_scores():
-		pass
+    def __init__(self):
+        pass
 
-	def save_scores(self,points,stage):
-		f = open ("Ranking.txt","a")
-		f.write(f"username:  points-{points},  stages-{stage}")
-		f.close()
+    def load_scores(self):
+        pass
 
-	def play_game(self):
-		player_score = 0
-		bot_score = 0
-		round = 0
-		total = 0
-		while True:
-			while bot_score <2 and player_score<2:
-				bot_point = random.randint(1,6)
-				player_point = random.randint(1,6)
-				print(f"bot: {bot_point}")
-				print(f"player: {player_point}")
-				if bot_point == player_point:
-					print("Its a tie!")
-				if bot_point > player_point:
-					print("You lost, Username!")
-					bot_score += 1
+    def save_scores(self, points, stage):
+        with open("Ranking.txt", "a") as f:
+            f.write(f"username: points-{points}, stages-{stage}\n")
 
-				if bot_point < player_point:
-					print("You won, Username!")
-					player_score += 1
-					total +=1
+    def play_game(self):
+        player_score = 0
+        bot_score = 0
+        round_count = 0
+        total = 0
 
-			if bot_score< player_score:
-				print("You won the , Username!")
-				player_score+=3
-				total+=3
-				round+=1
-				self.save_scores(total, round)
-				break
-			if bot_score>player_score:
-				print("You lost the game, Username!")
-				break
-			
-	def show_top_scores():
-		pass
+        while True:
+            while bot_score < 2 and player_score < 2:
+                bot_point = random.randint(1, 6)
+                player_point = random.randint(1, 6)
+                print(f"bot: {bot_point}")
+                print(f"player: {player_point}")
+                
+                if bot_point == player_point:
+                    print("It's a tie!")
+                elif bot_point > player_point:
+                    print("You lost, Username!")
+                    bot_score += 1
+                elif bot_point < player_point:
+                    print("You won, Username!")
+                    player_score += 1
+                    total += 1
 
-	def logout():
-		pass
+            if bot_score < player_score:
+                print("You won the game, Username!")
+                player_score += 3
+                total += 3
+                round_count += 1
+                self.save_scores(total, round_count)
+                break
+            elif bot_score > player_score:
+                print("You lost the game, Username!")
+                break
 
-	def menu():
-		pass
+    def show_top_scores(self):
+        pass
 
-dice = DiceGame()
-dice.play_game()
+    def logout(self):
+        pass
+
+    def menu(self):
+        pass

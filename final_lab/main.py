@@ -1,7 +1,7 @@
-from utils.dice_game import DiceGame
+from utils import dice_game
 
 def main():
-    dice_game = DiceGame()
+    dice = dice_game.DiceGame()
 
     while True:
         print("Welcome to Dice Roll Game!")

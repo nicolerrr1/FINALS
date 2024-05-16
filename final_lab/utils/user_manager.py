@@ -8,7 +8,7 @@ class UserManager:
         if not os.path.exists("data"):
             os.makedirs("data")
 
-        users_file_path = os.path.join("data", "users.txt")
+        users_file_path = os.path.join("data", "accounts.txt")
         if os.path.exists(users_file_path):
             with open(users_file_path, "r") as f:
                 for line in f:
@@ -19,7 +19,7 @@ class UserManager:
         if not os.path.exists("data"):
             os.makedirs("data")
 
-        users_file_path = os.path.join("data", "users.txt")
+        users_file_path = os.path.join("data", "accounts.txt")
         with open(users_file_path, "w") as f:
             for username, password in self.users.items():
                 f.write(f"{username},{password}\n")

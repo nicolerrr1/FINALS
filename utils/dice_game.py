@@ -41,10 +41,7 @@ class DiceGame:
 			if bot_score>player_score:
 				print("You lost the game, Username!")
 				break
-
-
-
-
+			
 	def show_top_scores():
 		pass
 
@@ -56,3 +53,4 @@ class DiceGame:
 
 dice = DiceGame()
 dice.play_game()
+

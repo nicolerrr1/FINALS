@@ -1,7 +1,9 @@
 from utils import dice_game
+from utils import user_manager
 
 def main():
     dice = dice_game.DiceGame()
+    user = user_manager.UserManager()
 
     while True:
         print("Welcome to Dice Roll Game!")
@@ -11,11 +13,15 @@ def main():
         
         choice = input("Enter your choice: ")
         if choice == '1':
-                dice_game.register()
+            username = input("Enter your desired Username: ")
+            password = input("Enter your desired Password: ")
+            user.register(username,password)
+
         elif choice == '2':
-            dice_game.login()
-            if dice_game.current_user:
-                dice_game.menu()
+            username = input("Enter your username: ")
+            password = input("Enter your password: ")
+            user.login(username,password)
+
         elif choice == '3':
             print("Exiting the game. Goodbye!")
             break

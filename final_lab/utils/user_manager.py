@@ -3,26 +3,27 @@ import os
 class UserManager:
     def __init__(self):
         self.users = {}
+        self.load_users()  # Load users when the UserManager instance is created
 
     def load_users(self):
-        if not os.path.exists("data"):
-            os.makedirs("data")
+        user_file_path = os.path.join('data', 'account.txt')  
+        if os.path.exists(user_file_path):
+            with open(user_file_path, 'r') as file:
+                lines = file.readlines()
+                for line in lines:
+                    parts = line.strip().split(',')  
+                    username = parts[0]
+                    password = parts[1]
+                    self.users[username] = password  # Update self.users dictionary with loaded data
 
-        users_file_path = os.path.join("data", "accounts.txt")
-        if os.path.exists(users_file_path):
-            with open(users_file_path, "r") as f:
-                for line in f:
-                    username, password = line.strip().split(",")
-                    self.users[username] = password
+    def save_user(self, username, password):
+        user_folder = 'data'    
+        user_file_path = os.path.join(user_folder, 'account.txt')  
+        if not os.path.exists(user_folder):
+            os.makedirs(user_folder)  
 
-    def save_users(self):
-        if not os.path.exists("data"):
-            os.makedirs("data")
-
-        users_file_path = os.path.join("data", "accounts.txt")
-        with open(users_file_path, "w") as f:
-            for username, password in self.users.items():
-                f.write(f"{username},{password}\n")
+        with open(user_file_path, 'a+') as file:
+            file.write(f"{username},{password}\n")
 
     def validate_username(self, username):
         if len(username) < 4:
@@ -44,8 +45,9 @@ class UserManager:
             print("Invalid password. Password must be at least 8 characters long.")
             return False
 
-        self.users[username] = password
+        self.users[username] = password  # Update self.users with new user data
         print("Registration successful.")
+        self.save_user(username, password)  # Save user to file
         return True
 
     def login(self, username, password):

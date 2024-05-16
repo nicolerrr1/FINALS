@@ -3,10 +3,10 @@ import os
 class UserManager:
     def __init__(self):
         self.users = {}
-        self.load_users()  # Load users when the UserManager instance is created
 
     def load_users(self):
-        user_file_path = os.path.join('data', 'account.txt')  
+        user_file_path = os.path.join('utils--data', 'account.txt')  
+        users = []
         if os.path.exists(user_file_path):
             with open(user_file_path, 'r') as file:
                 lines = file.readlines()
@@ -14,10 +14,11 @@ class UserManager:
                     parts = line.strip().split(',')  
                     username = parts[0]
                     password = parts[1]
-                    self.users[username] = password  # Update self.users dictionary with loaded data
+                    users.append((username, password))
+        return users 
 
-    def save_user(self, username, password):
-        user_folder = 'data'    
+    def save_user(self,username,password):
+        user_folder = 'utils--data'    
         user_file_path = os.path.join(user_folder, 'account.txt')  
         if not os.path.exists(user_folder):
             os.makedirs(user_folder)  
@@ -45,9 +46,10 @@ class UserManager:
             print("Invalid password. Password must be at least 8 characters long.")
             return False
 
-        self.users[username] = password  # Update self.users with new user data
+        self.users[username] = password
         print("Registration successful.")
-        self.save_user(username, password)  # Save user to file
+        self.load_users()
+        self.save_user(username,password)
         return True
 
     def login(self, username, password):

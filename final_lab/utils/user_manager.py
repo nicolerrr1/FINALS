@@ -5,7 +5,7 @@ class UserManager:
         self.users = {}
 
     def load_users(self):
-        user_file_path = os.path.join('utils--data', 'account.txt')  
+        user_file_path = os.path.join('utils/data', 'account.txt')  
         users = []
         if os.path.exists(user_file_path):
             with open(user_file_path, 'r') as file:
@@ -18,7 +18,7 @@ class UserManager:
         return users 
 
     def save_user(self,username,password):
-        user_folder = 'utils--data'    
+        user_folder = 'utils/data'    
         user_file_path = os.path.join(user_folder, 'account.txt')  
         if not os.path.exists(user_folder):
             os.makedirs(user_folder)  

@@ -53,3 +53,6 @@ class DiceGame:
 
     def menu(self):
         pass
+
+dice = DiceGame()
+dice.play_game()
